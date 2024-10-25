@@ -10,26 +10,6 @@ MAGENTA='\e[35m'
 CIAN='\e[36m'
 RESET='\e[0m'
 
-clear
-
-#Menu opciones
-while true; do
-    echo "Elija una opcion"
-    echo "1.Generar un informe con el uso actual de la CPU, memoria y disco, y guardarlo en un archivo log."
-    echo "2.Eliminar archivos temporales, caché del sistema y de navegadores para liberar espacio en disco."
-    echo "3.Verificar e instalar actualizaciones del sistema de forma automática, registrando los cambios."
-    echo "4.Salir."
-    read opcion
-
-    case $opcion in
-        1) generarInforme;;
-        2) eliminarTemporales;;
-        3) actualizaciones;;
-        4) echo "Saliendo..."; exit 0;;
-        *) clear; echo -e "${ROJO}Opcion incorrecta!, vuelva a ingresar otra opcion${RESET}";;
-    esac
-done 
-
 generarInforme(){
     # Definir el nombre del archivo log
     LOGFILE="sistema_log.txt"
@@ -54,7 +34,9 @@ generarInforme(){
     echo "" >> $LOGFILE
 
     # Fin del informe
-    echo "Informe generado y guardado en $LOGFILE"
+    clear
+    echo -e "${VERDE}Informe generado y guardado en $LOGFILE ${RESET}"
+    cat sistema_log.txt
 }
 
 eliminarTemporales(){
@@ -73,18 +55,18 @@ sudo rm -rf /var/tmp/*
 echo "Archivos temporales eliminados."
 
 # Limpiar caché del sistema
-echo "Limpiando caché del sistema..."
+echo -e "${AMARILLO}Limpiando caché del sistema...${RESET}"
 sudo apt-get clean  # Para sistemas basados en Debian/Ubuntu
 sudo apt-get autoremove -y  # Elimina paquetes no necesarios
-echo "Caché del sistema limpiada."
+echo -e "${VERDE}Caché del sistema limpiada.${RESET}"
 
 # Limpiar caché de navegadores (ejemplo para Firefox y Chrome)
-echo "Eliminando caché de navegadores..."
+echo -e "${AMARILLO}Eliminando caché de navegadores...${RESET}"
 rm -rf ~/.cache/mozilla/firefox/*/cache2/*
 rm -rf ~/.cache/google-chrome/Default/Cache/*
-echo "Caché de navegadores eliminada."
+echo -e "${VERDE}Caché de navegadores eliminada."
 
-echo "Limpieza completada."
+echo -e "Limpieza completada.${RESET}"
 }
 
 actualizaciones(){
@@ -128,4 +110,24 @@ fi
 # Finalizar
 echo "Proceso de actualización completado."
 }
+
+clear
+
+#Menu opciones
+while true; do
+    echo -e "${AMARILLO}Elija una opcion${RESET}"
+    echo "1.Generar un informe con el uso actual de la CPU, memoria y disco, y guardarlo en un archivo log."
+    echo "2.Eliminar archivos temporales, caché del sistema y de navegadores para liberar espacio en disco."
+    echo "3.Verificar e instalar actualizaciones del sistema de forma automática, registrando los cambios."
+    echo -e "${ROJO}4.Salir.${RESET}"
+    read opcion
+
+    case $opcion in
+        1) generarInforme;;
+        2) eliminarTemporales;;
+        3) actualizaciones;;
+        4) echo "Saliendo..."; exit 0;;
+        *) clear; echo -e "${ROJO}Opcion incorrecta!, vuelva a ingresar otra opcion${RESET}";;
+    esac
+done 
 
