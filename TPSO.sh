@@ -15,21 +15,21 @@ generarInforme(){
     LOGFILE="sistema_log.txt"
 
     # Obtener la fecha y hora actual
-    echo "Informe del sistema - $(date)" > $LOGFILE
-    echo "==============================" >> $LOGFILE
+    echo -e "${AMARILLO}Informe del sistema - $(date)${RESET}" > $LOGFILE
+    echo "" >> $LOGFILE
 
     # Obtener el uso de la CPU
-    echo "Uso de la CPU:" >> $LOGFILE
+    echo -e "${AMARILLO}Uso de la CPU:" ${RESET}>> $LOGFILE
     top -b -n 1 | grep "Cpu(s)" >> $LOGFILE
     echo "" >> $LOGFILE
 
     # Obtener el uso de la memoria
-    echo "Uso de la memoria:" >> $LOGFILE
+    echo -e "${AMARILLO}Uso de la memoria:${RESET}" >> $LOGFILE
     free -h >> $LOGFILE
     echo "" >> $LOGFILE
 
     # Obtener el uso del disco
-    echo "Uso del disco:" >> $LOGFILE
+    echo -e "${AMARILLO}Uso del disco:${RESET}" >> $LOGFILE
     df -h >> $LOGFILE
     echo "" >> $LOGFILE
 
@@ -130,4 +130,3 @@ while true; do
         *) clear; echo -e "${ROJO}Opcion incorrecta!, vuelva a ingresar otra opcion${RESET}";;
     esac
 done 
-
