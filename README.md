@@ -1,9 +1,12 @@
-# Trabajo practico final S.0
+<H1 align="center">Trabajo practico final sistema operativo</H1>
+
+<p align="center">
+  <img src=https://github.com/user-attachments/assets/34cad956-c89c-4e89-9f2e-1897b70b6fab alt="Logo IDRA">
+</p>
 
 ## Descripcion proyecto 
 Trabajo practico donde se busca aplicar e integrar los conceptos vistos a lo largo de la cursada. 
-Se desarrollo un script en bash que automatiza 3 tareas. 
-Usando ademas del lenguaje Bash en si, sino que tambien comandos unix. 
+Se desarrollo un script en bash que automatiza 3 tareas aplicando comandos unix. 
 
 ## Intrucciones de uso y ejemplos
 ### Ejecucion del programa 
