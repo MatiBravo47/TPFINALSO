@@ -8,7 +8,7 @@
 Trabajo practico donde se busca aplicar e integrar los conceptos vistos a lo largo de la cursada. 
 Se desarrollo un script en bash que automatiza 3 tareas aplicando comandos unix. 
 
-## Intrucciones de uso y ejemplos
+## Instrucciones de uso y ejemplos
 ### Ejecucion del programa 
 Para ejecutar el siguiente programa es necesario tener instalado sistema operativo linux, localmente, con máquina virtual o instalando wsl ubuntu para windows esto lo que hace es instalar la terminal de ubuntu o el sistema de ubuntu en su sistema operativo Windows.
 Pasos para ejecutar el programa usando wls
@@ -24,7 +24,7 @@ Pasos para ejecutar el programa usando wls
 9. Por último, ejecutamos el archivo escribiendo “sudo ./TPSO.sh”
   
 
-## Intrucciones sobre como colaborar con el proyecto
+## Instrucciones sobre como colaborar con el proyecto
 
 ## Indicar bajo que licencia se distribuye el proyecto 
 
