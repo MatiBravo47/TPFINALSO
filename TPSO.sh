@@ -42,31 +42,40 @@ generarInforme(){
 eliminarTemporales(){
 
 # Confirmación antes de eliminar archivos
-read -p "¿Estás seguro de que deseas eliminar archivos temporales y caché? (s/n): " confirm
-if [[ $confirm != "s" ]]; then
-    echo "Operación cancelada."
-    exit 1
-fi
+while true; do
+    read -p "¿Estás seguro de que deseas eliminar archivos temporales y caché? (s/n): " confirm
+    case $confirm in
+    [sS])
+        # Eliminar archivos temporales del sistema
+        echo "Eliminando archivos temporales del sistema..."
+        sudo rm -rf /tmp/*
+        sudo rm -rf /var/tmp/*
+        echo "Archivos temporales eliminados."
 
-# Eliminar archivos temporales del sistema
-echo "Eliminando archivos temporales del sistema..."
-sudo rm -rf /tmp/*
-sudo rm -rf /var/tmp/*
-echo "Archivos temporales eliminados."
+        # Limpiar caché del sistema
+        echo -e "${AMARILLO}Limpiando caché del sistema...${RESET}"
+        sudo apt-get clean  # Para sistemas basados en Debian/Ubuntu
+        sudo apt-get autoremove -y  # Elimina paquetes no necesarios
+        echo -e "${VERDE}Caché del sistema limpiada.${RESET}"
 
-# Limpiar caché del sistema
-echo -e "${AMARILLO}Limpiando caché del sistema...${RESET}"
-sudo apt-get clean  # Para sistemas basados en Debian/Ubuntu
-sudo apt-get autoremove -y  # Elimina paquetes no necesarios
-echo -e "${VERDE}Caché del sistema limpiada.${RESET}"
+        # Limpiar caché de navegadores (ejemplo para Firefox y Chrome)
+        echo -e "${AMARILLO}Eliminando caché de navegadores...${RESET}"
+        rm -rf ~/.cache/mozilla/firefox/*/cache2/*
+        rm -rf ~/.cache/google-chrome/Default/Cache/*
+        echo -e "${VERDE}Caché de navegadores eliminada."
 
-# Limpiar caché de navegadores (ejemplo para Firefox y Chrome)
-echo -e "${AMARILLO}Eliminando caché de navegadores...${RESET}"
-rm -rf ~/.cache/mozilla/firefox/*/cache2/*
-rm -rf ~/.cache/google-chrome/Default/Cache/*
-echo -e "${VERDE}Caché de navegadores eliminada."
-
-echo -e "Limpieza completada.${RESET}"
+        echo -e "Limpieza completada.${RESET}"
+        break
+        ;;
+    [nN])
+        echo "Operación cancelada."
+        exit 1
+        ;;
+    *)
+        echo "opcion incorrecta, vuelva a ingresar otra opcion"
+        ;;
+    esac
+done
 }
 
 actualizaciones(){
@@ -109,13 +118,15 @@ fi
 
 # Finalizar
 echo "Proceso de actualización completado."
+cat $LOGFILE   
 }
 
 clear
+    echo -e "${AMARILLO}Bienvenido!"
 
 #Menu opciones
 while true; do
-    echo -e "${AMARILLO}Elija una opcion${RESET}"
+    echo -e "Elija una opcion${RESET}"
     echo "1.Generar un informe con el uso actual de la CPU, memoria y disco, y guardarlo en un archivo log."
     echo "2.Eliminar archivos temporales, caché del sistema y de navegadores para liberar espacio en disco."
     echo "3.Verificar e instalar actualizaciones del sistema de forma automática, registrando los cambios."
@@ -126,7 +137,7 @@ while true; do
         1) generarInforme;;
         2) eliminarTemporales;;
         3) actualizaciones;;
-        4) echo "Saliendo..."; exit 0;;
+        4) echo "Saliendo..."; sleep 1; clear; exit 0;;
         *) clear; echo -e "${ROJO}Opcion incorrecta!, vuelva a ingresar otra opcion${RESET}";;
     esac
 done 
