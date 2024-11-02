@@ -15,7 +15,7 @@ Pasos para ejecutar el programa usando wls
 
 1. Abrimos la terminal de linux 
 2. Clonar el repositorio de github `git clone https://github.com/MatiBravo47/TPFINALSO.git`
-3. Entramos en la carpeta de la carpeta clonada con `cd TPFINALSO`
+3. Entramos a carpeta clonada con `cd TPFINALSO`
 4. Agregamos permisos de ejecucion `chmod +x TPFINAL.sh`
 5. Por último, ejecutamos el archivo escribiendo `sudo ./TPSO.sh`
   
