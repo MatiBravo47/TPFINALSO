@@ -59,3 +59,7 @@ Especifica el objetivo del Pull Request, qué problema soluciona o qué mejora.
 
 ## Licencia: MIT.
 
+## Integrantes:
+- Matias Bravo
+- Rocio Lairana
+- Martin Gomez
